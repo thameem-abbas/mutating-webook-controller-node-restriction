@@ -52,26 +52,34 @@ kubectl get nodes --show-labels | grep kubernetes.io/hostname
    cd mutating-webhook-controller
    ```
 
-2. Deploy the controller:
+2. Deploy the webhook controller:
    ```bash
-   ./test-multi-namespace.sh
+   ./webhook-setup.sh deploy
    ```
 
-3. Clean up the deployment:
+3. Deploy test resources (optional):
    ```bash
-   ./cleanup.sh
+   ./webhook-test.sh deploy
+   ```
+
+4. Clean up resources (in this order):
+   ```bash
+   # First, clean up test resources (pods and test namespaces)
+   ./webhook-test.sh cleanup
+   
+   # Then, clean up the webhook controller and its resources
+   ./webhook-setup.sh cleanup
    ```
 
 ## Testing
 
-The test script (`test-multi-namespace.sh`) will:
+The test script (`webhook-test.sh`) will:
 1. Create three namespaces:
    - `restricted-zone-1`: Restricted to a specific node
    - `restricted-zone-2`: Restricted to a different node
    - `unrestricted-zone`: No node restrictions
-2. Deploy the webhook in the `webhook-system` namespace
-3. Create test pods in all namespaces
-4. Verify that pods are scheduled according to namespace restrictions
+2. Create test pods in all namespaces
+3. Verify that pods are scheduled according to namespace restrictions
 
 The repository includes test pods for both generic and GPU workloads:
 - `test-gpu-pod-1.yaml`: GPU pod specification
