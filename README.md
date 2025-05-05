@@ -14,6 +14,27 @@ The controller implements the following functionality:
 - Preserves any pre-existing node selectors on pods, allowing manual node selection to take precedence
 - Allows pods in unlabeled namespaces to be scheduled normally
 
+## Namespace Configuration
+
+To restrict pods in a namespace to a specific node, label the namespace with `node.restriction/target=<node-name>`. The node name should match the `kubernetes.io/hostname` of the target node.
+
+Example:
+```bash
+# Label a namespace to restrict pods to a specific node
+kubectl label namespace my-namespace node.restriction/target=worker-node-1
+
+# Verify the label was applied
+kubectl get namespace my-namespace --show-labels
+
+# Remove the restriction by removing the label
+kubectl label namespace my-namespace node.restriction/target-
+```
+
+To find available node names:
+```bash
+kubectl get nodes --show-labels | grep kubernetes.io/hostname
+```
+
 ## Prerequisites
 
 - Kubernetes cluster
