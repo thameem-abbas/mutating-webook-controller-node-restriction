@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-node-webhook
+  namespace: webhook-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-node-webhook
+  template:
+    metadata:
+      labels:
+        app: pod-node-webhook
+    spec:
+      serviceAccountName: pod-node-webhook
+      containers:
+      - name: webhook
+        image: quay.io/rh-ee-thibrahi/mutating-admission-webhook-controller:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8443
+        volumeMounts:
+        - name: webhook-certs
+          mountPath: /etc/webhook/certs
+          readOnly: true
+      volumes:
+      - name: webhook-certs
+        secret:
+          secretName: webhook-certs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-node-webhook
+  namespace: webhook-system
+spec:
+  ports:
+  - port: 8443
+    targetPort: 8443
+  selector:
+    app: pod-node-webhook 
