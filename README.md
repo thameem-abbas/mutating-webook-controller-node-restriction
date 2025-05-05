@@ -1,6 +1,7 @@
 # Mutating Webhook Controller for Node Restriction
 
-NOTE: This was written using AI and validated by me in exactly one scenario. Please validate this code before using it in production.
+NOTE: This was written using AI and validated by me in exactly one scenario. Please validate this code yourself before using it.
+
 NOTE: This is a work in progress and will be updated to support more scenarios.
 
 This project implements a Kubernetes mutating webhook controller that enforces node restrictions for pods based on namespace labels. It ensures that pods in labeled namespaces are scheduled only on specific nodes as configured in the namespace labels.
