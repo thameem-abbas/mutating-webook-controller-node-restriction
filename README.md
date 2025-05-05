@@ -1,5 +1,9 @@
 # Mutating Webhook Controller for Node Restriction
 
+
+NOTE: This was written using AI and validated by me in exactly one scenario. Please validate this code before using it in production.
+NOTE: This is a work in progress and will be updated to support more scenarios.
+
 This project implements a Kubernetes mutating webhook controller that enforces node restrictions for pods based on namespace labels. It ensures that pods in labeled namespaces are scheduled only on specific nodes as configured in the namespace labels.
 
 ## Overview
@@ -122,4 +126,8 @@ If you encounter issues:
 
 ## License
 
-[Add your license information here] 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
